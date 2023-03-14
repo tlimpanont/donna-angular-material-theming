@@ -1,30 +1,50 @@
 @use 'sass:map';
-@use '~@angular/material/index' as mat;
-@import "tokens";
+@use '@angular/material' as mat;
+
+@use "src/donna/tokens" as tokens;
+
+@mixin defaultPadding() {
+  padding: tokens.$donna-size-button-primary-padding-top-default tokens.$donna-size-button-primary-padding-right-default tokens.$donna-size-button-primary-padding-bottom-default tokens.$donna-size-button-primary-padding-left-default;
+}
+
+@mixin largePadding() {
+  padding: tokens.$donna-size-button-primary-padding-top-large tokens.$donna-size-button-primary-padding-right-large tokens.$donna-size-button-primary-padding-bottom-large tokens.$donna-size-button-primary-padding-left-large;
+}
 
 @mixin color($theme) {
-  // Get the color config from the theme.
-  $color-config: mat.get-color-config($theme);
 
-  // Get the primary color palette from the color-config.
-  $primary-palette: map.get($color-config, 'primary');
-
-  [mat-button].mdc-button {
-    // Read the 500 hue from the primary color palette.
-    background-color: mat.get-color-from-palette($primary-palette, 500);
-    color: mat.get-contrast-color-from-palette($primary-palette, 500);
-    padding: $donna-size-button-primary-padding-left-default $donna-size-button-primary-padding-top-default;
-    margin: $donna-size-button-primary-gap-default;
+  [mat-flat-button],
+  [mat-raised-button],
+  [mat-button], [mat-stroked-button] {
+    @include defaultPadding();
   }
+
+  .large-button {
+    &[mat-flat-button],
+    &[mat-raised-button],
+    &[mat-button] {
+      @include largePadding();
+    }
+
+    mat-icon {
+      transform: scale(1.3);
+    }
+  }
+
+  .alert-button {
+    &[mat-flat-button],
+    &[mat-raised-button],
+    &[mat-button],
+    {
+      background: mat.get-color-from-palette(mat.$red-palette, 700);
+      color: mat.get-contrast-color-from-palette(mat.$red-palette, 700);
+    }
+  }
+
 }
 
 @mixin typography($theme) {
-  // Get the typography config from the theme.
   $typography-config: mat.get-typography-config($theme);
-
-  .my-carousel {
-    font-family: mat.font-family($typography-config);
-  }
 }
 
 @mixin theme($theme) {
