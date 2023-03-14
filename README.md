@@ -1,3 +1,13 @@
+# ================================
+
+# Change theme via Developers Console - Inspect Element 
+![img.png](img.png)
+
+`donna-theme` or `ns-theme`
+
+
+# ================================
+
 # AngularTheming
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
