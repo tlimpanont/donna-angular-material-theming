@@ -28,6 +28,18 @@ $donna-light-theme: mat.define-light-theme(
     ),
 );
 
+$donna-dark-theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $donna-palette,
+        accent: $donna-palette,
+        warn: $donna-palette,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    ),
+);
+
 $ns-light-theme: mat.define-light-theme(
     (
       color: (
@@ -43,8 +55,10 @@ $ns-light-theme: mat.define-light-theme(
 @include mat.all-component-typographies($donna-light-theme);
 
 .donna-theme {
-  @include mat.all-component-colors($donna-light-theme);
-  @include button.theme($donna-light-theme);
+  color: white;
+  background-color: #1E1E1E;
+  @include mat.all-component-colors($donna-dark-theme);
+  @include button.theme($donna-dark-theme);
 }
 
 .ns-theme {
